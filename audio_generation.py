@@ -18,6 +18,16 @@ from perlin_numpy import (
     generate_fractal_noise_2d, generate_perlin_noise_2d, 
 )
 
+
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+from tqdm import tqdm
+from functools import partial
+import math
+import heapq
+from torchaudio.transforms import MelScale, Spectrogram
+
 """Fixing and taking some parameters"""
 
 learning_rate = 0.0005 #@param {type:"raw"}
@@ -37,15 +47,6 @@ VECTOR_DIM=vector_dimension
 
 shape=128           #length of time axis of split specrograms         
 spec_split=1
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-from tqdm import tqdm
-from functools import partial
-import math
-import heapq
-from torchaudio.transforms import MelScale, Spectrogram
 
 torch.set_default_tensor_type('torch.cuda.FloatTensor')
 
